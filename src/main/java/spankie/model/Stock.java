@@ -20,11 +20,16 @@ public class Stock {
 
   private String companyName; // Company Full name
 
-  private Float latestPrice; // Price of stock
+  private Double latestPrice; // Price of stock
 
   private Integer latestVolume; // Volume of available stock
 
-  private String latestSource; // "Close" or "Opend"
+  private String latestSource; // "Close" or "Open"
+
+  private Integer buyVolume; // volume of stock purchased.
+
+  private Double totalAmount; // total price of bought stock: buyVolume * latestPrice
+
 
   public Integer getId() {
     return id;
@@ -58,11 +63,11 @@ public class Stock {
     this.companyName = companyName;
   }
 
-  public Float getLatestPrice() {
+  public Double getLatestPrice() {
     return latestPrice;
   }
 
-  public void setLatestPrice(Float latestPrice) {
+  public void setLatestPrice(Double latestPrice) {
     this.latestPrice = latestPrice;
   }
 
@@ -80,6 +85,22 @@ public class Stock {
 
   public void setLatestSource(String latestSource) {
     this.latestSource = latestSource;
+  }
+
+  public Integer getBuyVolume() {
+    return buyVolume;
+  }
+
+  public void setBuyVolume(Integer buyVolume) {
+    this.buyVolume = buyVolume;
+  }
+
+  public Double getTotalAmount() {
+    return totalAmount;
+  }
+
+  public void setTotalAmount(Double totalAmount) {
+    this.totalAmount = totalAmount;
   }
 
   
