@@ -15,13 +15,13 @@ import spankie.model.User;
 import spankie.service.UserService;
 
 @SpringBootApplication
-public class JwtAuthServiceApp implements CommandLineRunner {
+public class StockServiceApp implements CommandLineRunner {
 
   @Autowired
   UserService userService;
 
   public static void main(String[] args) {
-    SpringApplication.run(JwtAuthServiceApp.class, args);
+    SpringApplication.run(StockServiceApp.class, args);
   }
 
   @Bean
@@ -36,16 +36,22 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     admin.setPassword("admin");
     admin.setEmail("admin@email.com");
     admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
-
-    userService.signup(admin);
+    try {
+      userService.signup(admin);
+    } catch(Exception e) {
+      System.out.println(e);
+    }
 
     User client = new User();
     client.setUsername("client");
     client.setPassword("client");
     client.setEmail("client@email.com");
     client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
-
-    userService.signup(client);
+    try {
+      userService.signup(client);
+    } catch(Exception e) {
+      System.out.println(e);
+    }
   }
 
 }
