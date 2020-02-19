@@ -31,18 +31,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Entry points
     http.authorizeRequests()//
-        .antMatchers("/users/signin").permitAll()//
-        .antMatchers("/users/signup").permitAll()//
         .antMatchers("/h2-console/**/**").permitAll()
         // Disallow everything else..
         .anyRequest().authenticated();
 
     // If a user try to access a resource without having enough permissions
     http.exceptionHandling().accessDeniedPage("/login");
-
     // Apply JWT
     http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
-
     // Optional, if you want to test the API from a browser
     // http.httpBasic();
   }
@@ -54,13 +50,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/swagger-resources/**")//
         .antMatchers("/swagger-ui.html")//
         .antMatchers("/configuration/**")//
+        .antMatchers("/users/signup")//
         .antMatchers("/webjars/**")//
         .antMatchers("/public")
-        
-        // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
-        .and()
-        .ignoring()
-        .antMatchers("/h2-console/**/**");;
+
+        // Un-secure H2 Database (for testing purposes, H2 console shouldn't be
+        // unprotected in production)
+        .and().ignoring().antMatchers("/h2-console/**/**");
   }
 
   @Bean
